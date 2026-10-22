@@ -26,16 +26,18 @@ Un Excel ya generado está en [`ejemplo/informe_ejemplo.xlsx`](ejemplo/informe_e
 
 ## Cómo ejecutarlo (Windows, PowerShell)
 
+Desde la carpeta del proyecto (la que contiene `requirements.txt`):
+
 ```powershell
+cd informe-cobros-pendientes
 python -m venv .venv
-.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python src/informe_cobros.py --fecha 2026-10-22
+.venv\Scripts\python.exe -m pip install -r requirements.txt
+.venv\Scripts\python.exe src\informe_cobros.py --fecha 2026-10-22
 ```
 
 El informe se guarda en `salida/informe_cobros.xlsx`. Sin `--fecha` usa la fecha de hoy.
 
-Si PowerShell bloquea `Activate.ps1`, ejecuta una vez `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` y vuelve a intentarlo.
+Este método llama directamente al Python del entorno virtual, así que no hace falta activarlo ni cambiar la política de scripts de PowerShell (`Activate.ps1` suele estar bloqueado en Windows por defecto). Probado en Windows con Python 3.15 y pandas 3.1.
 
 Para regenerar los datos de ejemplo: `python src/generar_datos.py`.
 
